@@ -1,0 +1,17 @@
+Create or replace procedure Delete_Subject (name_sbj in Varchar2)
+IS 
+    i number;
+
+BEGIN
+    select count(*)
+    into i
+    from NAME_SUBJECTS
+    where NAME_SUBJECT=name_sbj;
+    
+    IF i=0 THEN
+        DBMS_OUTPUT.put_line('This subject does not exist');
+    ELSE
+        DELETE FROM NAME_SUBJECTS WHERE NAME_SUBJECT = name_sbj;
+    END IF;
+END;
+/

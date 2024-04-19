@@ -1,0 +1,19 @@
+Create or replace procedure Update_Subject (old_name_sbj in Varchar2, new_name_sbj in Varchar2)
+IS 
+    i number;
+
+BEGIN
+    select count(*)
+    into i
+    from NAME_SUBJECTS
+    where NAME_SUBJECT=old_name_sbj;
+
+    IF i=0 THEN
+        DBMS_OUTPUT.put_line('This subject does not exist');
+    ELSIF old_name_sbj=new_name_sbj THEN
+        DBMS_OUTPUT.put_line('You write the same subject name');
+    ELSE
+        UPDATE NAME_SUBJECTS SET NAME_SUBJECT = new_name_sbj WHERE NAME_SUBJECT = old_name_sbj;
+    END IF;
+END;
+/

@@ -1,0 +1,22 @@
+Create or replace procedure Insert_Subject (name_sbj in Varchar2)
+IS 
+    i number;
+    j number;
+
+BEGIN
+    select count(*)
+    into i
+    from NAME_SUBJECTS
+    where NAME_SUBJECT=name_sbj;
+
+    select count(*)
+    into j
+    from NAME_SUBJECTS;
+
+    IF i>0 THEN
+        DBMS_OUTPUT.put_line('This subject already exists with id = ' || i);
+    ELSE
+        INSERT INTO NAME_SUBJECTS (ID_NAME_SUBJECT, NAME_SUBJECT) VALUES (j+1, name_sbj);
+    END IF;
+END;
+/
